@@ -2,7 +2,7 @@ version: '3.8'
 services:
   elasticsearch:
     image: 'elasticsearch:7.12.1'
-    container_name: elasticsearch
+    container_name: ex2_elasticsearch
     restart: unless-stopped
     ports:
       - '0.0.0.0:9200:9200'
@@ -27,7 +27,7 @@ services:
   
   cortex:
     image: 'thehiveproject/cortex:latest'
-    container_name: cortex
+    container_name: ex2_cortex
     restart: unless-stopped
     command:
       --secret "GJHPVNALDEIJMO423598"
@@ -47,7 +47,7 @@ services:
 
   thehive:
     image: 'thehiveproject/thehive4:4.1.4-1'
-    container_name: 'thehive4'
+    container_name: 'ex2_thehive4'
     ports:
       - '0.0.0.0:9000:9000'
     volumes:
@@ -62,7 +62,7 @@ services:
 
   n8n:
     image: n8nio/n8n
-    container_name: n8n
+    container_name: ex2_n8n
     restart: unless-stopped
     ports:
       - '0.0.0.0:5678:5678'
@@ -74,20 +74,20 @@ services:
 
   mailserver:
     image: training/mailserver:latest
-    container_name: mailserver
+    container_name: ex2_mailserver
     restart: unless-stopped
     ports:
       - '0.0.0.0:25:25'
       - '0.0.0.0:80:80'
       - '0.0.0.0:143:143'
       - '0.0.0.0:993:993'
-    environment: 
+    environment:
       - USERS_QUOTA=50
       - DOMAIN_NAME=training.org
       - ADMIN_USERNAME="admin"
       - ADMIN_PASSWD="secret"
-      - USERS="csrit:secret"
-      volumes:
+      - USERS="csrit:secret,secops:secret,john:secret"
+    volumes:
       - './volumes/mailserver/mysql:/var/lib/mysql'
       - './volumes/mailserver/log:/var/log'
       - './volumes/mailserver/vmail:/var/vmail'

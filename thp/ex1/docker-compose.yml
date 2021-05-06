@@ -2,7 +2,7 @@ version: '3.8'
 services:
   elasticsearch:
     image: 'elasticsearch:7.12.1'
-    container_name: elasticsearch
+    container_name: ex1_elasticsearch
     restart: unless-stopped
     ports:
       - '0.0.0.0:9200:9200'
@@ -27,11 +27,11 @@ services:
   
   cortex:
     image: 'thehiveproject/cortex:latest'
-    container_name: cortex
+    container_name: ex1_cortex
     restart: unless-stopped
     command:
       --secret "GJHPVNALDEIJMO423598"
-      --es-uri  "http://elasticsearch:9200"
+      --es-uri  "http://ex1_elasticsearch:9200"
       --job-directory ${JOB_DIRECTORY}
       --docker-job-directory ${DOCKER_JOB_DIRECTORY}
       --analyzer-url "https://download.thehive-project.org/analyzers-devel.json"
@@ -47,7 +47,7 @@ services:
 
   thehive:
     image: 'thehiveproject/thehive4:4.1.4-1'
-    container_name: 'thehive4'
+    container_name: 'ex1_thehive4'
     ports:
       - '0.0.0.0:9000:9000'
     volumes:
