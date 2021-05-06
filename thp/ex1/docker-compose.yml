@@ -54,6 +54,6 @@ services:
     networks:
       - default
     command: '--no-config --no-config-secret'
+
 networks:
-  n8n-net: null
-  default: null
+  default:
