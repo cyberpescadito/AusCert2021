@@ -73,7 +73,7 @@ services:
     command: n8n start
 
   mailserver:
-    image: training/mailserver:latest
+    image: mailserver:latest
     container_name: ex2_mailserver
     restart: unless-stopped
     ports:
