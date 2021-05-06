@@ -35,7 +35,7 @@ services:
       --job-directory ${JOB_DIRECTORY}
       --docker-job-directory ${DOCKER_JOB_DIRECTORY}
       --analyzer-url "https://download.thehive-project.org/analyzers-devel.json"
-      --responder-url "https://download.thehive-project.org/responders-devel.json" "/opt/Cortex-Analyzers/responders"
+      --responder-url "https://download.thehive-project.org/responders-devel.json /opt/Cortex-Analyzers/responders"
     volumes:
       - './volumes/cortex/tmp/cortex-jobs:/tmp/cortex-jobs'
       - '/var/run/docker.sock:/var/run/docker.sock'
@@ -82,11 +82,10 @@ services:
       - '0.0.0.0:143:143'
       - '0.0.0.0:993:993'
     environment:
-      - USERS_QUOTA=50
       - DOMAIN_NAME=training.org
-      - ADMIN_USERNAME="admin"
-      - ADMIN_PASSWD="secret"
-      - USERS="csrit:secret,secops:secret,john:secret"
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWD=secret
+      - USERS=csrit:secret,secops:secret,john:secret
     volumes:
       - './volumes/mailserver/mysql:/var/lib/mysql'
       - './volumes/mailserver/log:/var/log'
