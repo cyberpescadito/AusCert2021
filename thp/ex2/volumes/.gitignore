@@ -1,0 +1,5 @@
+## Ex2
+cortex/log/*
+elasticsearch/log/*
+thehive/log/*
+mailserver/log/*

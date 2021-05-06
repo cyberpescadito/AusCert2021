@@ -1,0 +1,8 @@
+## Ex1
+cortex/log
+elasticsearch/data
+elasticsearch/log/*
+thehive/data/*
+thehive/files/*
+thehive/index/*
+thehive/log/*
