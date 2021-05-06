@@ -73,7 +73,7 @@ services:
     command: n8n start
 
   mailserver:
-    image: mailserver:latest
+    image: docker.strangebee.com/training/mailserver:latest
     container_name: ex2_mailserver
     restart: unless-stopped
     ports:
