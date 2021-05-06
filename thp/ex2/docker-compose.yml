@@ -72,5 +72,24 @@ services:
       - './vol/n8n/:/node/.n8n'
     command: n8n start
 
+  mailserver:
+    image: training/mailserver:latest
+    container_name: mailserver
+    restart: unless-stopped
+    ports:
+      - '0.0.0.0:25:25'
+      - '0.0.0.0:80:80'
+      - '0.0.0.0:143:143'
+      - '0.0.0.0:993:993'
+    environment: 
+      - USERS_QUOTA=50
+      - DOMAIN_NAME=training.org
+      - ADMIN_USERNAME="admin"
+      - ADMIN_PASSWD="secret"
+      - USERS="csrit:secret"
+      volumes:
+      - './volumes/mailserver/mysql:/var/lib/mysql'
+      - './volumes/mailserver/log:/var/log'
+      - './volumes/mailserver/vmail:/var/vmail'
 networks:
   default:
