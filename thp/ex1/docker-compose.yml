@@ -31,12 +31,12 @@ services:
     container_name: cortex
     restart: unless-stopped
     command:
-      --secret GJHPVNALDEIJMO423598
+      --secret "GJHPVNALDEIJMO423598"
       --es-uri  "http://elasticsearch:9200"
       --job-directory ${JOB_DIRECTORY}
       --docker-job-directory ${DOCKER_JOB_DIRECTORY}
-      --analyzer-url https://download.thehive-project.org/analyzers-devel.json
-      --responder-url https://download.thehive-project.org/responders-devel.json
+      --analyzer-url "https://download.thehive-project.org/analyzers-devel.json"
+      --responder-url "https://download.thehive-project.org/responders-devel.json"
     volumes:
       - './volumes/cortex/tmp/cortex-jobs:/tmp/cortex-jobs'
       - '/var/run/docker.sock:/var/run/docker.sock'
