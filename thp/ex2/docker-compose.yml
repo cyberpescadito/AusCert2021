@@ -1,5 +1,4 @@
 version: '3.8'
-version: '3.8'
 services:
   elasticsearch:
     image: 'elasticsearch:7.12.1'
@@ -36,7 +35,7 @@ services:
       --job-directory ${JOB_DIRECTORY}
       --docker-job-directory ${DOCKER_JOB_DIRECTORY}
       --analyzer-url "https://download.thehive-project.org/analyzers-devel.json"
-      --responder-url "https://download.thehive-project.org/responders-devel.json"
+      --responder-url "https://download.thehive-project.org/responders-devel.json" "/opt/Cortex-Analyzers/responders"
     volumes:
       - './volumes/cortex/tmp/cortex-jobs:/tmp/cortex-jobs'
       - '/var/run/docker.sock:/var/run/docker.sock'
@@ -60,6 +59,18 @@ services:
     networks:
       - default
     command: '--no-config --no-config-secret'
+
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: unless-stopped
+    ports:
+      - '0.0.0.0:5678:5678'
+    environment: 
+      - WEBHOOK_TUNNEL_URL=http://n8n/
+    volumes:
+      - './vol/n8n/:/node/.n8n'
+    command: n8n start
 
 networks:
   default:
