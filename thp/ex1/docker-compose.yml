@@ -1,0 +1,59 @@
+version: '3.8'
+version: '3.8'
+services:
+  elasticsearch:
+    image: 'elasticsearch:7.12.1'
+    container_name: elasticsearch
+    restart: unless-stopped
+    ports:
+      - '0.0.0.0:9200:9200'
+    environment:
+      - http.host=0.0.0.0
+      - discovery.type=single-node
+      - cluster.name=hive
+      - script.allowed_types= inline
+      - thread_pool.search.queue_size=100000
+      - thread_pool.write.queue_size=10000
+      - gateway.recover_after_nodes=1
+      - xpack.security.enabled=false
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - './volumes/elasticsearch/data:/usr/share/elasticsearch/data'
+      - './volumes/elasticsearch/log:/usr/share/elasticsearch/logs'
+  
+  cortex:
+    image: 'thehiveproject/cortex:latest'
+    container_name: cortex
+    restart: unless-stopped
+    volumes:
+      - './volumes/cortex/conf:/etc/cortex'
+      - './volumes/cortex/tmp/cortex-jobs:/tmp/cortex-jobs'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - './volumes/cortex/log:/var/log/cortex'
+    depends_on:
+      - elasticsearch
+    ports:
+      - '0.0.0.0:9001:9001'
+
+  thehive:
+    image: 'thehiveproject/thehive4:4.1.4-1'
+    container_name: 'thehive4'
+    ports:
+      - '0.0.0.0:9000:9000'
+    volumes:
+      - './volumes/thehive/conf:/etc/thehive'
+      - './volumes/thehive/data:/opt/thp/thehive/data'
+      - './volumes/thehive/index:/opt/thp/thehive/index'
+      - './volumes/thehive/files:/opt/thp/thehive/files'
+      - './volumes/thehive/log:/var/log/thehive'
+    networks:
+      - default
+    command: '--no-config --no-config-secret'
+networks:
+  n8n-net: null
+  default: null

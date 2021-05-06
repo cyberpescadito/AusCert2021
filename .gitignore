@@ -1,3 +1,20 @@
+# Custom
+## Ex1
+ex1/volumes/cortex/log/*
+ex1/volumes/elasticsearch/data/*
+ex1/volumes/elasticsearch/log/*
+ex1/volumes/thehive/data/*
+ex1/volumes/thehive/files/*
+ex1/volumes/thehive/index/*
+ex1/volumes/thehive/log/*
+
+## Ex2
+ex2/volumes/cortex/log/*
+ex2/volumes/elasticsearch/log/*
+ex2/volumes/thehive/log/*
+ex2/mailserver/log/*
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
