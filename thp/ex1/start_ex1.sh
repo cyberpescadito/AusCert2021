@@ -3,6 +3,7 @@
 ## init
 docker-compose stop
 sudo rm -rf ./volumes/elasticsearch/data/*
+sudo rm -rf ./volumes/elasticsearch/log/*
 sudo rm -rf ./volumes/thehive/data/*
 sudo rm -rf ./volumes/thehive/index/*
 sudo rm -rf ./volumes/thehive/files/*
