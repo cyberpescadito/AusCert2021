@@ -3,3 +3,4 @@ cortex/log/*
 elasticsearch/log/*
 thehive/log/*
 mailserver/log/*
+mailserver/mysql/*

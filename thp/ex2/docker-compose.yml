@@ -77,10 +77,10 @@ services:
     container_name: ex2_mailserver
     restart: unless-stopped
     ports:
-      - '0.0.0.0:25:25'
-      - '0.0.0.0:80:80'
-      - '0.0.0.0:143:143'
-      - '0.0.0.0:993:993'
+      - '0.0.0.0:9025:25'
+      - '0.0.0.0:9080:80'
+      - '0.0.0.0:9143:143'
+      - '0.0.0.0:9993:993'
     environment:
       - DOMAIN_NAME=training.org
       - ADMIN_USERNAME=admin
