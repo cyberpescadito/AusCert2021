@@ -16,5 +16,9 @@ done
 sudo chown -R :root volumes
 sudo chmod -R g+w volumes
 
+
+sudo rm -rf volumes/mailserver/mysql/*
+sudo rm -rf volumes/mailserver/vmail/*
+sudo rm -rf volumes/mailserver/log/*
 ## Run
 docker-compose up -d
