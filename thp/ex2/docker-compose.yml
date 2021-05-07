@@ -85,7 +85,7 @@ services:
       - DOMAIN_NAME=training.org
       - ADMIN_USERNAME=admin
       - ADMIN_PASSWD=secret
-      - USERS=csrit:secret,secops:secret,john:secret
+      - USERS=csirt:secret,secops:secret,john:secret
     volumes:
       - './volumes/mailserver/mysql:/var/lib/mysql'
       - './volumes/mailserver/log:/var/log'
