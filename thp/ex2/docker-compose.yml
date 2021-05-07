@@ -34,8 +34,8 @@ services:
       --es-uri  "http://elasticsearch:9200"
       --job-directory ${JOB_DIRECTORY}
       --docker-job-directory ${DOCKER_JOB_DIRECTORY}
-      --analyzer-url "https://download.thehive-project.org/analyzers-devel.json"
-      --responder-url "https://download.thehive-project.org/responders-devel.json /opt/Cortex-Analyzers/responders"
+      --analyzer-url "https://download.thehive-project.org/analyzers.json"
+      --responder-url "https://download.thehive-project.org/responders.json /opt/Cortex-Analyzers/responders"
     volumes:
       - './volumes/cortex/tmp/cortex-jobs:/tmp/cortex-jobs'
       - '/var/run/docker.sock:/var/run/docker.sock'
